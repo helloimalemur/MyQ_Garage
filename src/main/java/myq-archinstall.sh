@@ -8,6 +8,7 @@ cp /usr/share/myq/myq.* ~/.myq/
 ##removing
 sudo pacman -R jkoonts-myq --noconfirm
 ##reinstalling
+rm -rf ~/MyQ_Garage/
 cd ~
 git clone https://github.com/helloimalemur/MyQ_Garage.git
 cd MyQ_Garage/src/main/java/
@@ -20,4 +21,4 @@ sudo chmod 755 /usr/share/myq/*
 sudo systemctl reload-daemon
 sudo systemctl start myq
 sudo systemctl status myq
-rm -rf ~/MyQ_Garage/
+
