@@ -26,6 +26,7 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+mainClassName = 'Main';
 
 jar {
     manifest {
@@ -34,6 +35,23 @@ jar {
                 'Main-Class': 'Main'
         )
     }
-}
+    from {
+        configurations.embed.collect {
+            exclude 'javax'
+            exclude '.project'
+            exclude '.classpath'
+            exclude 'about.html'
+            exclude 'LICENSE'
+            exclude 'NOTICE'
+            exclude 'LICENSE.txt'
+            exclude 'NOTICE.txt'
+            exclude 'META-INF/*'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/NOTICE.txt'
+            exclude 'META-INF/DEPENDENCIES'
 
-mainClassName = 'Main';
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
