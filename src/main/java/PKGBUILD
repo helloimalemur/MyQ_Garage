@@ -35,9 +35,11 @@ package_jkoonts-myq() {
     install=myq.install
     cp -a "$rootdir/config/"* "$pkgdir"
     git clone https://github.com/helloimalemur/MyQ_Java "$pkgdir/usr/share/myq/MyQ_Java"
+    ###to be replaced with Gradle build
 	javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Main.java"
     javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Closer.java"
     mv "$pkgdir/usr/share/myq/MyQ_Java/src/"*.class "$pkgdir/usr/share/myq/"
+    ###
     rm -rf "$pkgdir/usr/share/myq/MyQ_Java/"
     chmod +x "$pkgdir/usr/share/myq/startmyq.sh"
 }
