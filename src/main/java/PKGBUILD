@@ -34,14 +34,19 @@ rootdir=$(pwd)
 package_jkoonts-myq() {
     install=myq.install
     cp -a "$rootdir/config/"* "$pkgdir"
-    git clone https://github.com/helloimalemur/MyQ_Java "$pkgdir/usr/share/myq/MyQ_Java"
+    git clone https://github.com/helloimalemur/MyQ_Garage "$pkgdir/usr/share/myq/MyQ_Garage"
     ###to be replaced with Gradle build
-	javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Main.java"
+	#javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Main.java"
+    cd MyQ_Garage/
+    ./gradlew build
 	#gradlew build
-    javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Closer.java"
+    #javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Closer.java"
+
     #copy resulting classes from build dir
-    mv "$pkgdir/usr/share/myq/MyQ_Java/src/"*.class "$pkgdir/usr/share/myq/"
+    #mv "$pkgdir/usr/share/myq/MyQ_Garage/src/main/java/"*.class "$pkgdir/usr/share/myq/"
+    mv "$pkgdir/usr/share/myq/MyQ_Garage/build/classes/java/main/"*.class "$pkgdir/usr/share/myq/"
+
     ###app runs as it was previously configured otherwise
-    rm -rf "$pkgdir/usr/share/myq/MyQ_Java/"
+    rm -rf "$pkgdir/usr/share/myq/MyQ_Garage/"
     chmod +x "$pkgdir/usr/share/myq/startmyq.sh"
 }

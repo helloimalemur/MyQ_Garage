@@ -9,8 +9,8 @@ cp /usr/share/myq/myq.* ~/.myq/
 sudo pacman -R jkoonts-myq --noconfirm
 ##reinstalling
 cd ~
-git clone https://github.com/helloimalemur/MyQ_Java.git
-cd MyQ_Java/src/
+git clone https://github.com/helloimalemur/MyQ_Garage.git
+cd MyQ_Garage/src/main/java/
 makepkg -si --noconfirm
 sudo systemctl stop myq
 ##if configs had already exist they should be in home dir already
@@ -20,4 +20,4 @@ sudo chmod 755 /usr/share/myq/*
 sudo systemctl reload-daemon
 sudo systemctl start myq
 sudo systemctl status myq
-rm -rf ~/MyQ_Java/
+rm -rf ~/MyQ_Garage/
