@@ -37,9 +37,9 @@ package_jkoonts-myq() {
     git clone https://github.com/helloimalemur/MyQ_Garage "$pkgdir/usr/share/myq/MyQ_Garage"
     ###to be replaced with Gradle build
 	#javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Main.java"
-    cd ~/MyQ_Garage/
-    ./gradlew build
-	#gradlew build
+    ##cd ~/MyQ_Garage/
+    ##./gradlew build
+	#gradlew build should have already been ran
     #javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Closer.java"
 
     #copy resulting classes from build dir
