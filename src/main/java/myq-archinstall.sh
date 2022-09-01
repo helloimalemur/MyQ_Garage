@@ -10,7 +10,7 @@ sudo pacman -R jkoonts-myq --noconfirm
 ##reinstalling
 rm -rf ~/MyQ_Garage/
 cd ~
-git clone https://github.com/helloimalemur/MyQ_Garage.git
+git clone https://github.com/helloimalemur/MyQ_Garage
 cd MyQ_Garage/
 ./gradlew build
 cd MyQ_Garage/src/main/java/
