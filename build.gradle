@@ -28,6 +28,8 @@ test {
 }
 mainClassName = 'Main';
 
+
+// Include dependencies in JAR
 jar {
     manifest {
         attributes(
