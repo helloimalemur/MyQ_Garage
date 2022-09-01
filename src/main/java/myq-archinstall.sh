@@ -13,7 +13,7 @@ cd ~
 git clone https://github.com/helloimalemur/MyQ_Garage
 cd MyQ_Garage/
 ./gradlew build
-cd MyQ_Garage/src/main/java/
+cd /src/main/java/
 makepkg -si --noconfirm
 sudo systemctl stop myq
 ##if configs had already exist they should be in home dir already
