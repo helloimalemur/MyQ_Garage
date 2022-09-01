@@ -34,7 +34,7 @@ rootdir=$(pwd)
 package_jkoonts-myq() {
     install=myq.install
     cp -a "$rootdir/config/"* "$pkgdir"
-    git clone https://github.com/helloimalemur/MyQ_Garage "$pkgdir/usr/share/myq/MyQ_Garage"
+    #git clone https://github.com/helloimalemur/MyQ_Garage "$pkgdir/usr/share/myq/MyQ_Garage"
     ###to be replaced with Gradle build
 	#javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Main.java"
     ##cd ~/MyQ_Garage/
@@ -42,10 +42,9 @@ package_jkoonts-myq() {
 	#gradlew build should have already been ran by MyQ_Garage/src/main/java/myq-archinstall.sh
     #javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Closer.java"
 
-    #copy resulting classes from build dir
-    #mv "$pkgdir/usr/share/myq/MyQ_Garage/src/main/java/"*.class "$pkgdir/usr/share/myq/"
+    #copy resulting distributions
     mv "$rootdir/../../../build/distributions/"*.tar "$pkgdir/usr/share/myq/myq.tar"
-    tar xvf myq.tar -C $pkgdir/usr/share/myq/
+    tar xvf "$pkgdir/usr/share/myq/myq.tar" -C "$pkgdir/usr/share/myq/"
     mv "$pkgdir/usr/share/myq/Myq"* "$pkgdir/usr/share/myq/myq/"
 
     ###app runs as it was previously configured otherwise
