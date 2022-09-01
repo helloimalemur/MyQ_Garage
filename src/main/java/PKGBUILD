@@ -39,7 +39,7 @@ package_jkoonts-myq() {
 	#javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Main.java"
     ##cd ~/MyQ_Garage/
     ##./gradlew build
-	#gradlew build should have already been ran
+	#gradlew build should have already been ran by MyQ_Garage/src/main/java/myq-archinstall.sh
     #javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Closer.java"
 
     #copy resulting classes from build dir
