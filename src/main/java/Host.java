@@ -35,9 +35,9 @@ public class Host {
                 System.out.println(this.address + " connected");
                 if (timer.calcTimePassed() && CheckTime.check()) {
                     String message = "attempting to open garage ..";
-                    System.out.println(message);
-                    
                     OpenControl.open();
+                    System.out.println(message);
+                    discordNotif.sendNotif(message);
                 }
             }
             oldcheck = newcheck;
@@ -52,8 +52,9 @@ public class Host {
                 System.out.println(this.address + " disconnected");
                 if (Main.closeondiscon) {
                     String message = "Closing garage ..";
-                    System.out.println(message);
                     CloseControl.close();
+                    System.out.println(message);
+                    discordNotif.sendNotif(message);
                 }
             }
             oldcheck = newcheck;
