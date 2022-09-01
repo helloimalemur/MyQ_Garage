@@ -1,0 +1,44 @@
+# This is a default template for a post-install scriptlet.
+# Uncomment only required functions and remove any functions
+# you don't need (and this header).
+
+## arg 1:  the new package version
+pre_install() {
+    useradd myq -m
+    su -c 'pip install aiohttp pymyq requests asyncio pyyaml' myq
+}
+
+## arg 1:  the new package version
+post_install() {
+    chmod 755 /usr/share/myq/*
+    systemctl daemon-reload
+	systemctl enable myq
+	systemctl start myq
+}
+
+## arg 1:  the new package version
+## arg 2:  the old package version
+pre_upgrade() {
+	systemctl stop myq
+}
+
+## arg 1:  the new package version
+## arg 2:  the old package version
+post_upgrade() {
+	systemctl start myq
+	chmod 755 /usr/share/myq/*
+}
+
+## arg 1:  the old package version
+pre_remove() {
+    systemctl disable myq
+	systemctl stop myq
+}
+
+## arg 1:  the old package version
+post_remove() {
+	rm -rf /etc/systemd/system/myq.service
+	rm -rf /usr/share/myq
+	userdel myq
+	rm -rf /home/myq
+}
