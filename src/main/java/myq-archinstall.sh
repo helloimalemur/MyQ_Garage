@@ -11,6 +11,8 @@ sudo pacman -R jkoonts-myq --noconfirm
 rm -rf ~/MyQ_Garage/
 cd ~
 git clone https://github.com/helloimalemur/MyQ_Garage.git
+cd MyQ_Garage/
+./gradlew build
 cd MyQ_Garage/src/main/java/
 makepkg -si --noconfirm
 sudo systemctl stop myq
