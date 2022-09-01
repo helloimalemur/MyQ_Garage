@@ -44,7 +44,9 @@ package_jkoonts-myq() {
 
     #copy resulting classes from build dir
     #mv "$pkgdir/usr/share/myq/MyQ_Garage/src/main/java/"*.class "$pkgdir/usr/share/myq/"
-    mv "$rootdir/../../../build/classes/java/main/"*.class "$pkgdir/usr/share/myq/"
+    mv "$rootdir/../../../build/distributions/"*.tar "$pkgdir/usr/share/myq/myq.tar"
+    tar xvf myq.tar -C $pkgdir/usr/share/myq/
+    mv "$pkgdir/usr/share/myq/Myq"* "$pkgdir/usr/share/myq/myq/"
 
     ###app runs as it was previously configured otherwise
     rm -rf "$pkgdir/usr/share/myq/MyQ_Garage/"
