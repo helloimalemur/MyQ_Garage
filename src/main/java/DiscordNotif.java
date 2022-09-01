@@ -1,8 +1,7 @@
 
-
-
 import org.apache.http.client.HttpClient;
 import org.apache.http.*;
+import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
