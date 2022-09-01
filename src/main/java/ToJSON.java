@@ -1,7 +1,6 @@
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 public class ToJSON {
     private ObjectMapper mapper;
     private String jsonstring;
@@ -13,7 +12,7 @@ public class ToJSON {
 
     public void setContent(String content) {
         message.content = content;
-        message.username = "Tod";
+        message.username = "Bot";
     }
 
     public void setUsername(String username) {

@@ -5,6 +5,7 @@ public class Host {
     boolean oldcheck;
     boolean cond;
     IntervalTimer timer;
+    DiscordNotif discordNotif;
 
 
     Host(String s, int a, boolean b) throws Exception {
@@ -15,6 +16,7 @@ public class Host {
         this.timer = new IntervalTimer(a);
         timer.setDisConnTime();
         this.cond = b;
+        this.discordNotif = new DiscordNotif();
     }
 
 
@@ -34,6 +36,7 @@ public class Host {
                 if (timer.calcTimePassed() && CheckTime.check()) {
                     String message = "attempting to open garage ..";
                     System.out.println(message);
+                    
                     OpenControl.open();
                 }
             }
