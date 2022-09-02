@@ -83,7 +83,9 @@ public class IntervalTimer {
         if (Math.abs(hourspassed) > 0 ) {pass = true;}
         if (Math.abs(minspassed) > thresholdinmins) {pass = true;}
 
-        discordNotif.sendNotif("TimePassed: " + "Secs: " + secondspassed + "Mins: " + minspassed + "Hours: " + hourspassed + "Days: " + dayspassed + " Of theshold: " + thresholdinmins);
+        if (pass || !pass) { //testing how annoying this is
+            discordNotif.sendNotif("TimePassed: " + "Secs: " + secondspassed + "Mins: " + minspassed + "Hours: " + hourspassed + "Days: " + dayspassed + " Of theshold: " + thresholdinmins);
+        }
         System.out.println("TimePassed: " + "Secs: " + secondspassed + "Mins: " + minspassed + "Hours: " + hourspassed + "Days: " + dayspassed);
         System.out.println("Theshold in mins: " + thresholdinmins);
         System.out.println(pass);
