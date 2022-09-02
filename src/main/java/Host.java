@@ -4,7 +4,7 @@ public class Host {
     boolean newcheck;
     boolean oldcheck;
     boolean cond;
-    IntervalTimer timer;
+    IntervalTimer intervalTimer;
     DiscordNotif discordNotif;
 
 
@@ -13,8 +13,8 @@ public class Host {
         this.name = s;
         this.newcheck = true;
         this.oldcheck = true;
-        this.timer = new IntervalTimer(a);
-        timer.setDisConnTime();
+        this.intervalTimer = new IntervalTimer(a);
+        intervalTimer.setDisConnTime();
         this.cond = b;
         this.discordNotif = new DiscordNotif();
     }
@@ -27,13 +27,13 @@ public class Host {
         //System.out.println("Checking: " + address);
 
 
-        if ((oldcheck != newcheck) && (newcheck)) {
-            timer.setConnTime();
-            //check if enough time has passed and opengarage
-            if ((!oldcheck) && (newcheck)) {
+        if ((oldcheck != newcheck) && (newcheck)) { //if state change and is connected
+            intervalTimer.setConnTime(); //set connection time
+
+            if ((!oldcheck) && (newcheck)) { //verify change was from disconnected to connected
                 System.out.println("----------------------");
                 System.out.println(this.address + " connected");
-                if (timer.calcTimePassed() && CheckTime.check()) {
+                if (intervalTimer.calcTimePassed() && CheckTime.check()) { //verify enough time has passed
                     String message = "attempting to open garage ..";
                     OpenControl.open();
                     System.out.println(message);
@@ -44,13 +44,13 @@ public class Host {
         }
 
 
-        if ((oldcheck != newcheck) && (!newcheck)) {
+        if ((oldcheck != newcheck) && (!newcheck)) { //if state change and is NOT connected
 
-            if ((oldcheck) && (!newcheck)) {
-                timer.setDisConnTime();
+            if ((oldcheck) && (!newcheck)) { //verify change was from connected to disconnected
+                intervalTimer.setDisConnTime(); //set disconnection time
                 System.out.println("----------------------");
                 System.out.println(this.address + " disconnected");
-                if (Main.closeondiscon) {
+                if (Main.closeondiscon) { //check 'close on disconnect' config setting
                     String message = "Closing garage ..";
                     CloseControl.close();
                     System.out.println(message);
