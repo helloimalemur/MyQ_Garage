@@ -12,9 +12,12 @@ public class IntervalTimer {
     int[] conn = new int[4];//sec,min,hour,day
     int[] diss = new int[4];
     boolean pass;
+    DiscordNotif discordNotif;
 
-    IntervalTimer(int a){
+    IntervalTimer(int a) throws Exception {
+
         thresholdinmins = a;
+        discordNotif = new DiscordNotif();
     }
 
     public void resetValues() {
@@ -49,7 +52,7 @@ public class IntervalTimer {
     }
 
 
-    public boolean calcTimePassed() {
+    public boolean calcTimePassed() throws Exception {
 
         if (conn[0] < diss[0]) { // check seconds passed
             secondspassed = 60-(Math.abs(conn[0] - diss[0]));
@@ -73,23 +76,15 @@ public class IntervalTimer {
             hourspassed = conn[2] - diss[2];
         }
 
-
         dayspassed += Math.abs(conn[3] - diss[3]); // days passed
 
-
-
         pass = false;
-
-        System.out.println("Days:" + dayspassed);
         if (Math.abs(dayspassed) > 0) {pass = false;} // we're only going to fire on same-day leave/return (debug)
-
-        System.out.println("Hours:" + hourspassed);
         if (Math.abs(hourspassed) > 0 ) {pass = true;}
-
-        System.out.println("Mins:" + minspassed);
         if (Math.abs(minspassed) > thresholdinmins) {pass = true;}
 
-        System.out.println("Secs:" + secondspassed);
+        discordNotif.sendNotif("TimePassed: " + "Secs: " + secondspassed + "Mins: " + minspassed + "Hours: " + hourspassed + "Days: " + dayspassed + " Of theshold: " + thresholdinmins);
+        System.out.println("TimePassed: " + "Secs: " + secondspassed + "Mins: " + minspassed + "Hours: " + hourspassed + "Days: " + dayspassed);
         System.out.println("Theshold in mins: " + thresholdinmins);
         System.out.println(pass);
         return pass;
