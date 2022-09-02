@@ -11,8 +11,8 @@ public class Host {
     Host(String s, int a, boolean b) throws Exception {
         this.address = s;
         this.name = s;
-        this.newcheck = true;
-        this.oldcheck = true;
+        this.newcheck = false;
+        this.oldcheck = false;
         this.intervalTimer = new IntervalTimer(a);
         intervalTimer.setDisConnTime();
         this.cond = b;
