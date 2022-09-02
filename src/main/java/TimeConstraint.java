@@ -1,9 +1,8 @@
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class CheckTime {
+public class TimeConstraint {
     public static boolean check () {
         Date date = new Date();
         Calendar cal = GregorianCalendar.getInstance();

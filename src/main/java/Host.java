@@ -33,7 +33,7 @@ public class Host {
             if ((!oldcheck) && (newcheck)) { //verify change was from disconnected to connected
                 System.out.println("----------------------");
                 System.out.println(this.address + " connected");
-                if (intervalTimer.calcTimePassed() && CheckTime.check()) { //verify enough time has passed
+                if (intervalTimer.calcTimePassed() && TimeConstraint.check()) { //verify enough time has passed
                     String message = "attempting to open garage ..";
                     OpenControl.open();
                     System.out.println(message);
