@@ -8,6 +8,7 @@ INSTALL;
 1. Run; ```bash <(curl -s https://raw.githubusercontent.com/helloimalemur/MyQ_Garage/master/src/main/java/myq-archinstall.sh)```
 2. Add MyQ credentials; ```/usr/share/myq/myq.yml```
 2. Update config; ```/usr/share/myq/myq.config```
+2. Restart Service; ```sudo systemctl restart myq```
 
 UNINSTALL;
 
