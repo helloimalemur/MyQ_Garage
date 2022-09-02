@@ -3,84 +3,91 @@ import java.time.LocalTime;
 
 public class IntervalTimer {
     int thresholdinmins;
-    int hourspassed;
-    int minspassed;
-    int dayspassed;
+
     int secondspassed;
-    int[] conn = new int[5];//hour,min,day
-    int[] diss = new int[5];
+    int minspassed;
+    int hourspassed;
+    int dayspassed;
+
+    int[] conn = new int[4];//sec,min,hour,day
+    int[] diss = new int[4];
     boolean pass;
 
     IntervalTimer(int a){
         thresholdinmins = a;
     }
 
+    public void resetValues() {
+        secondspassed = 0;
+        minspassed = 0;
+        hourspassed = 0;
+        dayspassed = 0;
+    }
 
     public void setDisConnTime() {
         int dhour = LocalTime.now().getHour();
         int dmin = LocalTime.now().getMinute();
         int dday = LocalDate.now().getDayOfMonth();
         int dsec = LocalTime.now().getSecond();
-        diss[0] = dhour;
+        diss[0] = dsec;
         diss[1] = dmin;
+        diss[2] = dhour;
         diss[3] = dday;
-        diss[4] = dsec;
+
     }
 
     public void setConnTime() {
-        int chour = LocalTime.now().getHour();
-        int cmin = LocalTime.now().getMinute();
-        int cday = LocalDate.now().getDayOfMonth();
+
         int csec = LocalTime.now().getSecond();
-        conn[0] = chour;
+        int cmin = LocalTime.now().getMinute();
+        int chour = LocalTime.now().getHour();
+        int cday = LocalDate.now().getDayOfMonth();
+        conn[0] = csec;
         conn[1] = cmin;
+        conn[2] = chour;
         conn[3] = cday;
-        conn[4] = csec;
     }
 
 
     public boolean calcTimePassed() {
 
-        if (!(diss[0] == conn[0])) {
-            //if (conn[0] == 1) { // if 12 hour format
-            //    conn[0] = 13;
-            //    hourspassed = conn[0] - diss[0];
-            //} else {
-            //    hourspassed = conn[0] - diss[0];
-            //}
-            if (conn[0] < diss[0]) {
-                hourspassed = Math.abs(conn[0] - diss[0]);
-            }
-            hourspassed = conn[0] - diss[0];
-
+        if (conn[0] < diss[0]) { // check seconds passed
+            secondspassed = 60-(Math.abs(conn[0] - diss[0]));
+        } else {
+            secondspassed = conn[0] - diss[0];
         }
 
-
-        if (conn[1] < diss[1]) {
+        if (conn[1] < diss[1]) { // check mins passed
             minspassed = 60-(Math.abs(conn[1] - diss[1]));
         } else {
             minspassed = conn[1] - diss[1];
         }
 
-        dayspassed = Math.abs(conn[3] - diss[3]);
 
-        if (conn[4] < diss[4]) {
-            secondspassed = 60-(Math.abs(conn[4] - diss[4]));
-        } else {
-            secondspassed = conn[4] - diss[4];
+        if (!(diss[2] == conn[2])) { // check the hours passed
+            if (conn[2] < diss[2]) {
+                //hourspassed = 24 - (diss[2] - conn[2]);
+                hourspassed = 0;
+                dayspassed += 1;
+            }
+            hourspassed = conn[2] - diss[2];
         }
+
+
+        dayspassed += Math.abs(conn[3] - diss[3]); // days passed
+
 
 
         pass = false;
 
         System.out.println("Days:" + dayspassed);
-        if (dayspassed > 0) {pass = true;}
+        if (Math.abs(dayspassed) > 0) {pass = false;} // we're only going to fire on same-day leave/return (debug)
 
         System.out.println("Hours:" + hourspassed);
-        if (hourspassed > 0 ) {pass = true;}
+        if (Math.abs(hourspassed) > 0 ) {pass = true;}
 
         System.out.println("Mins:" + minspassed);
-        if (minspassed > thresholdinmins) {pass = true;}
+        if (Math.abs(minspassed) > thresholdinmins) {pass = true;}
 
         System.out.println("Secs:" + secondspassed);
         System.out.println("Theshold in mins: " + thresholdinmins);

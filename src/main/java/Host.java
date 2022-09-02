@@ -3,7 +3,6 @@ public class Host {
     String address;
     boolean newcheck;
     boolean oldcheck;
-    boolean cond;
     IntervalTimer intervalTimer;
     DiscordNotif discordNotif;
 
@@ -15,7 +14,7 @@ public class Host {
         this.oldcheck = false;
         this.intervalTimer = new IntervalTimer(a);
         intervalTimer.setDisConnTime();
-        this.cond = b;
+        intervalTimer.resetValues();
         this.discordNotif = new DiscordNotif();
     }
 
@@ -36,6 +35,7 @@ public class Host {
                 if (intervalTimer.calcTimePassed() && TimeConstraint.check()) { //verify enough time has passed
                     String message = "attempting to open garage ..";
                     OpenControl.open();
+                    intervalTimer.resetValues();
                     System.out.println(message);
                     discordNotif.sendNotif(message);
                 }
@@ -53,6 +53,7 @@ public class Host {
                 if (Main.closeondiscon) { //check 'close on disconnect' config setting
                     String message = "Closing garage ..";
                     CloseControl.close();
+                    intervalTimer.resetValues();
                     System.out.println(message);
                     discordNotif.sendNotif(message);
                 }
