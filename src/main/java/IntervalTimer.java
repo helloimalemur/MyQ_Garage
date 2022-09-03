@@ -69,9 +69,7 @@ public class IntervalTimer {
 
         if (!(diss[2] == conn[2])) { // check the hours passed
             if (conn[2] < diss[2]) {
-                //hourspassed = 24 - (diss[2] - conn[2]);
-                hourspassed = 0;
-                dayspassed += 1;
+                hourspassed = 24 - (conn[2] - diss[2]);
             }
             hourspassed = conn[2] - diss[2];
         }
