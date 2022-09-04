@@ -100,13 +100,35 @@ public class TimerTest {
         System.out.println(LocalTime.now().getMinute());
         System.out.println(LocalTime.now().getHour());
         System.out.println(LocalDate.now().getDayOfMonth());
+
         System.out.println("----------------------");
         timerTest.resetValues();
+        timerTest.setDisConnTime();
+        timerTest.setDissconValues(0, 0,0,1);
+        timerTest.setConnTime();
+        timerTest.calc();
 
+        System.out.println("----------------------");
+        timerTest.resetValues();
+        timerTest.setDisConnTime();
+        timerTest.setDissconValues(0, 0,23,2);
+        timerTest.setConnTime();
+        timerTest.calc();
+
+        System.out.println("----------------------");
+        timerTest.resetValues();
         timerTest.setDisConnTime();
         timerTest.setDissconValues(59, 59,2,3);
         timerTest.setConnTime();
         timerTest.calc();
+
+        System.out.println("----------------------");
+        timerTest.resetValues();
+        timerTest.setDisConnTime();
+        timerTest.setDissconValues(59, 59,23,1);
+        timerTest.setConnTime();
+        timerTest.calc();
+
     }
 }
 
