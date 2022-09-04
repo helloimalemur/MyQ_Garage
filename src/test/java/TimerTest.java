@@ -55,14 +55,14 @@ public class TimerTest {
 
     public void calc() {
 
-        if (conn[3] < diss[3]) {
-            dayspassed = 30 - (Math.abs(conn[3] - diss[3])); // days passed
+        if (conn[3] < diss[3]) { //check days passed
+            dayspassed = 30 - (Math.abs(conn[3] - diss[3]));
         } else {
             dayspassed = Math.abs(conn[3] - diss[3]);
         }
 
-        // check the hours passed
-        if (conn[2] < diss[2]) {
+
+        if (conn[2] < diss[2]) { // check the hours passed
             System.out.println("if triggered");
             hourspassed = Math.abs(conn[2] - diss[2]);
         } else {
@@ -76,16 +76,12 @@ public class TimerTest {
             minspassed = conn[1] - diss[1];
         }
 
+
         if (conn[0] < diss[0]) { // check seconds passed
             secondspassed = 60-(Math.abs(conn[0] - diss[0]));
         } else {
             secondspassed = conn[0] - diss[0];
         }
-
-
-
-
-
 
 
 

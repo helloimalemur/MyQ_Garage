@@ -54,11 +54,20 @@ public class IntervalTimer {
 
     public boolean calcTimePassed() throws Exception {
 
-        if (conn[0] < diss[0]) { // check seconds passed
-            secondspassed = 60-(Math.abs(conn[0] - diss[0]));
+        if (conn[3] < diss[3]) { //check days passed
+            dayspassed = 30 - (Math.abs(conn[3] - diss[3]));
         } else {
-            secondspassed = conn[0] - diss[0];
+            dayspassed = Math.abs(conn[3] - diss[3]);
         }
+
+
+        if (conn[2] < diss[2]) { // check the hours passed
+            System.out.println("if triggered");
+            hourspassed = Math.abs(conn[2] - diss[2]);
+        } else {
+            hourspassed = Math.abs(conn[2] - diss[2]);
+        }
+
 
         if (conn[1] < diss[1]) { // check mins passed
             minspassed = 60-(Math.abs(conn[1] - diss[1]));
@@ -67,19 +76,10 @@ public class IntervalTimer {
         }
 
 
-        if (conn[3] < diss[3]) {
-            dayspassed = 30 - (Math.abs(conn[3] - diss[3])); // days passed
+        if (conn[0] < diss[0]) { // check seconds passed
+            secondspassed = 60-(Math.abs(conn[0] - diss[0]));
         } else {
-            dayspassed = Math.abs(conn[3] - diss[3]);
-        }
-
-
-        if (!(diss[2] == conn[2])) { // check the hours passed
-            if (conn[2] < diss[2]) {
-                hourspassed = Math.abs(24 - (conn[2] - diss[2]));
-                dayspassed += 1;
-            }
-            hourspassed = Math.abs(conn[2] - diss[2]);
+            secondspassed = conn[0] - diss[0];
         }
 
         pass = false;
