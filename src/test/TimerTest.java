@@ -1,25 +1,27 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class IntervalTimer {
+public class TimerTest {
+
     int thresholdinmins;
-
-    int secondspassed;
-    int minspassed;
     int hourspassed;
+    int minspassed;
     int dayspassed;
-
-    int[] conn = new int[4];//sec,min,hour,day
-    int[] diss = new int[4];
+    int secondspassed;
+    int[] conn = new int[5];//hour,min,day
+    int[] diss = new int[5];
     boolean pass;
-    DiscordNotif discordNotif;
 
-    IntervalTimer(int a) throws Exception {
-
-        thresholdinmins = a;
-        discordNotif = new DiscordNotif();
+    public void setDissconValues(int a, int b, int c, int d) {
+        diss[0] = a;
+        diss[1] = b;
+        diss[2] = c;
+        diss[3] = d;
+        System.out.println(diss[0]);
+        System.out.println(diss[1]);
+        System.out.println(diss[2]);
+        System.out.println(diss[3]);
     }
-
     public void resetValues() {
         secondspassed = 0;
         minspassed = 0;
@@ -36,11 +38,13 @@ public class IntervalTimer {
         diss[1] = dmin;
         diss[2] = dhour;
         diss[3] = dday;
-
+        System.out.println(diss[0]);
+        System.out.println(diss[1]);
+        System.out.println(diss[2]);
+        System.out.println(diss[3]);
     }
 
     public void setConnTime() {
-
         int csec = LocalTime.now().getSecond();
         int cmin = LocalTime.now().getMinute();
         int chour = LocalTime.now().getHour();
@@ -52,8 +56,7 @@ public class IntervalTimer {
     }
 
 
-    public boolean calcTimePassed() throws Exception {
-
+    public void calc() {
         if (conn[0] < diss[0]) { // check seconds passed
             secondspassed = 60-(Math.abs(conn[0] - diss[0]));
         } else {
@@ -69,7 +72,7 @@ public class IntervalTimer {
 
         if (conn[3] < diss[3]) {
             dayspassed = 30 - (Math.abs(conn[3] - diss[3])); // days passed
-        } else {
+            } else {
             dayspassed = Math.abs(conn[3] - diss[3]);
         }
 
@@ -82,17 +85,24 @@ public class IntervalTimer {
             hourspassed = Math.abs(conn[2] - diss[2]);
         }
 
+
+
         pass = false;
         if (Math.abs(dayspassed) > 0) {pass = false;} // we're only going to fire on same-day leave/return (debug)
         if (Math.abs(hourspassed) > 0 ) {pass = true;}
         if (Math.abs(minspassed) > thresholdinmins) {pass = true;}
 
-        if (pass || !pass) { //testing how annoying this is
-            discordNotif.sendNotif("TimePassed: " + "Secs: " + secondspassed + " Mins: " + minspassed + " Hours: " + hourspassed + " Days: " + dayspassed);
-        }
         System.out.println("TimePassed: " + "Secs: " + secondspassed + " Mins: " + minspassed + " Hours: " + hourspassed + " Days: " + dayspassed);
         System.out.println("Theshold in mins: " + thresholdinmins);
         System.out.println(pass);
-        return pass;
+    }
+    public static void main(String[] arg) {
+        TimerTest timerTest = new TimerTest();
+        timerTest.resetValues();
+        timerTest.setDissconValues(23, 22,12,3);
+        //timerTest.setDisConnTime();
+        timerTest.setConnTime();
+        timerTest.calc();
     }
 }
+
