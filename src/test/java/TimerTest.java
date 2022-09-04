@@ -17,10 +17,11 @@ public class TimerTest {
         diss[1] = b;
         diss[2] = c;
         diss[3] = d;
-        System.out.println(diss[0]);
-        System.out.println(diss[1]);
-        System.out.println(diss[2]);
-        System.out.println(diss[3]);
+        System.out.println("disconnected: ");
+        System.out.println("seconds; " + diss[0]);
+        System.out.println("mins; " + diss[1]);
+        System.out.println("hours; " + diss[2]);
+        System.out.println("days; " + diss[3]);
     }
     public void resetValues() {
         secondspassed = 0;
@@ -38,10 +39,6 @@ public class TimerTest {
         diss[1] = dmin;
         diss[2] = dhour;
         diss[3] = dday;
-        System.out.println(diss[0]);
-        System.out.println(diss[1]);
-        System.out.println(diss[2]);
-        System.out.println(diss[3]);
     }
 
     public void setConnTime() {
@@ -64,13 +61,14 @@ public class TimerTest {
             dayspassed = Math.abs(conn[3] - diss[3]);
         }
 
-        if (!(diss[2] == conn[2])) { // check the hours passed
-            if (conn[2] < diss[2]) {
-                hourspassed = Math.abs(24 - (conn[2] - diss[2]));
-                //dayspassed += 1;
-            }
+        // check the hours passed
+        if (conn[2] < diss[2]) {
+            System.out.println("if triggered");
+            hourspassed = Math.abs(conn[2] - diss[2]);
+        } else {
             hourspassed = Math.abs(conn[2] - diss[2]);
         }
+
 
         if (conn[1] < diss[1]) { // check mins passed
             minspassed = 60-(Math.abs(conn[1] - diss[1]));
@@ -102,32 +100,15 @@ public class TimerTest {
     }
     public static void main(String[] arg) {
         TimerTest timerTest = new TimerTest();
-        timerTest.resetValues();
+        System.out.println(LocalTime.now().getSecond());
+        System.out.println(LocalTime.now().getMinute());
+        System.out.println(LocalTime.now().getHour());
+        System.out.println(LocalDate.now().getDayOfMonth());
         System.out.println("----------------------");
         timerTest.resetValues();
-        timerTest.setDissconValues(23, 22,22,1);
-        //timerTest.setDisConnTime();
-        timerTest.setConnTime();
-        timerTest.calc();
 
-        System.out.println("----------------------");
-        timerTest.resetValues();
-        timerTest.setDissconValues(53, 12,20,2);
-        //timerTest.setDisConnTime();
-        timerTest.setConnTime();
-        timerTest.calc();
-
-        System.out.println("----------------------");
-        timerTest.resetValues();
-        timerTest.setDissconValues(17, 42,14,3);
-        //timerTest.setDisConnTime();
-        timerTest.setConnTime();
-        timerTest.calc();
-
-        System.out.println("----------------------");
-        timerTest.resetValues();
-        timerTest.setDissconValues(0, 0,0,2);
-        //timerTest.setDisConnTime();
+        timerTest.setDisConnTime();
+        timerTest.setDissconValues(59, 59,2,3);
         timerTest.setConnTime();
         timerTest.calc();
     }
