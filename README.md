@@ -1,5 +1,8 @@
 # MyQ_Garage
 Monitors for presence of specified IP address, such as a cell phone, and opens MyQ Garage upon device connection.
+
+Personally used to automatically open garage when arriving home on motorcycle.
+
 Packaged for install on Arch using 'makepkg' on PKGBUILD.
 
 
