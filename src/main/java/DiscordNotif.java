@@ -15,7 +15,6 @@ public class DiscordNotif {
     }
     public void sendNotif(String message) throws Exception {
         ToJSON toJSON = new ToJSON();
-        System.out.println("test");
         toJSON.setContent(message);
 
         HttpClient httpClient = HttpClients.createDefault();

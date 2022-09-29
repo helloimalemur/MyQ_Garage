@@ -1,38 +1,39 @@
 public class Host {
     String name;
     String address;
-    boolean newcheck;
-    boolean oldcheck;
+    boolean newCheck;
+    boolean oldCheck;
     IntervalTimer intervalTimer;
     DiscordNotif discordNotif;
+    TimeConstraint timeConstraint;
 
-
-    Host(String s, int a, boolean b) throws Exception {
+    Host(String s, int a, boolean b, int timeConstraintStart, int timeConstraintEnd) throws Exception {
         this.address = s;
         this.name = s;
-        this.newcheck = false;
-        this.oldcheck = false;
+        this.newCheck = false;
+        this.oldCheck = false;
         this.intervalTimer = new IntervalTimer(a);
         intervalTimer.setDisConnTime();
         intervalTimer.resetValues();
         this.discordNotif = new DiscordNotif();
+        timeConstraint = new TimeConstraint(timeConstraintStart, timeConstraintEnd);
     }
 
 
 
     public void checkHostStatus() throws Exception {
-        newcheck = CheckHost.check(address);
+        newCheck = CheckHost.check(address);
         //debug
         //System.out.println("Checking: " + address);
 
 
-        if ((oldcheck != newcheck) && (newcheck)) { //if state change and is connected
+        if ((oldCheck != newCheck) && (newCheck)) { //if state change and is connected
             intervalTimer.setConnTime(); //set connection time
 
-            if ((!oldcheck) && (newcheck)) { //verify change was from disconnected to connected
+            if ((!oldCheck) && (newCheck)) { //verify change was from disconnected to connected
                 System.out.println("----------------------");
                 System.out.println(this.address + " connected");
-                if (intervalTimer.calcTimePassed() && TimeConstraint.check()) { //verify enough time has passed
+                if (intervalTimer.calcTimePassed() && timeConstraint.check()) { //verify enough time has passed
                     String message = "attempting to open garage ..";
                     OpenControl.open();
                     intervalTimer.resetValues();
@@ -40,13 +41,13 @@ public class Host {
                     discordNotif.sendNotif(message);
                 }
             }
-            oldcheck = newcheck;
+            oldCheck = newCheck;
         }
 
 
-        if ((oldcheck != newcheck) && (!newcheck)) { //if state change and is NOT connected
+        if ((oldCheck != newCheck) && (!newCheck)) { //if state change and is NOT connected
 
-            if ((oldcheck) && (!newcheck)) { //verify change was from connected to disconnected
+            if ((oldCheck) && (!newCheck)) { //verify change was from connected to disconnected
                 intervalTimer.setDisConnTime(); //set disconnection time
                 System.out.println("----------------------");
                 System.out.println(this.address + " disconnected");
@@ -58,9 +59,9 @@ public class Host {
                     discordNotif.sendNotif(message);
                 }
             }
-            oldcheck = newcheck;
+            oldCheck = newCheck;
         } else {
-            oldcheck = newcheck;
+            oldCheck = newCheck;
         }
     }
 }
