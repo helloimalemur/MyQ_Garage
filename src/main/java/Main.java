@@ -34,9 +34,9 @@ public class Main {
         System.out.println("participants: " + participants);
 
         //time constraint settings
-        int timeConstraintStart = Integer.parseInt(props.getProperty("app.timeConstraintStart")); //in hour of day
+        int timeConstraintStart = Integer.parseInt(props.getProperty("app.timeconstraintstart")); //in hour of day
         System.out.println("time Constraint Start: " + timeConstraintStart);
-        int timeConstraintEnd = Integer.parseInt(props.getProperty("app.timeConstraintEnd")); //in hour of day
+        int timeConstraintEnd = Integer.parseInt(props.getProperty("app.timeconstraintend")); //in hour of day
         System.out.println("time Constraint End: " + timeConstraintEnd);
 
 

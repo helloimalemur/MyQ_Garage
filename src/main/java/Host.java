@@ -19,8 +19,6 @@ public class Host {
         timeConstraint = new TimeConstraint(timeConstraintStart, timeConstraintEnd);
     }
 
-
-
     public void checkHostStatus() throws Exception {
         newCheck = CheckHost.check(address);
         //debug
