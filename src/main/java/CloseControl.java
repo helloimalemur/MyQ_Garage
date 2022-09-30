@@ -10,7 +10,7 @@ public class CloseControl extends Thread implements Runnable {
 
     public void pythonClose() throws Exception {
         Thread.sleep(15000);
-        if (CheckHost.check(address)) {
+        if (!CheckHost.check(address)) {
             ProcessBuilder processBuilder = new ProcessBuilder("python3", "/usr/share/myq/closeGarage.py");
             processBuilder.redirectErrorStream(true);
             Process process = processBuilder.start();
