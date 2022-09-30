@@ -4,7 +4,7 @@ public class Host {
     boolean newCheck;
     boolean oldCheck;
     IntervalTimer intervalTimer;
-    DiscordNotif discordNotif;
+
     TimeConstraint timeConstraint;
 
     Host(String s, int a, boolean b, int timeConstraintStart, int timeConstraintEnd) throws Exception {
@@ -15,7 +15,6 @@ public class Host {
         this.intervalTimer = new IntervalTimer(a);
         intervalTimer.setDisConnTime();
         intervalTimer.resetValues();
-        this.discordNotif = new DiscordNotif();
         timeConstraint = new TimeConstraint(timeConstraintStart, timeConstraintEnd);
     }
 
@@ -36,7 +35,7 @@ public class Host {
                     OpenControl.open();
                     intervalTimer.resetValues();
                     System.out.println(message);
-                    discordNotif.sendNotif(message);
+                    DiscordNotif.sendNotif(message);
                 }
             }
             oldCheck = newCheck;
@@ -50,11 +49,9 @@ public class Host {
                 System.out.println("----------------------");
                 System.out.println(this.address + " disconnected");
                 if (Main.closeondiscon) { //check 'close on disconnect' config setting
-                    String message = "Closing garage ..";
-                    CloseControl.close();
+                    CloseControl.close(address);
                     intervalTimer.resetValues();
-                    System.out.println(message);
-                    discordNotif.sendNotif(message);
+
                 }
             }
             oldCheck = newCheck;

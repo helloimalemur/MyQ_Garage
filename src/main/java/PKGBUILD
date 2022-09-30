@@ -40,7 +40,7 @@ package_jkoonts-myq() {
     ##cd ~/MyQ_Garage/
     ##./gradlew build
 	#gradlew build should have already been ran by MyQ_Garage/src/main/java/myq-archinstall.sh
-    #javac -cp "$pkgdir/usr/share/myq/MyQ_Java/src/" "$pkgdir/usr/share/myq/MyQ_Java/src/Closer.java"
+
 
     #copy resulting distributions
     mv "$rootdir/../../../build/distributions/"*.tar "$pkgdir/usr/share/myq/myq.tar"

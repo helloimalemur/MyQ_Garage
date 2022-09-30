@@ -9,16 +9,17 @@ import org.apache.http.impl.client.HttpClients;
 import java.net.URI;
 
 public class DiscordNotif {
-    String url = "https://discordapp.com/api/webhooks/1014319311197847593/jjY11oRqtES_FS7lz330mqi_4rSl-zA_rNvcg2yDySriqStqmuZtntLsF8dKY1sQvrEW";
+
 
     DiscordNotif() throws Exception {
     }
-    public void sendNotif(String message) throws Exception {
+    public static void sendNotif(String message) throws Exception {
+        String url = "https://discordapp.com/api/webhooks/1014319311197847593/jjY11oRqtES_FS7lz330mqi_4rSl-zA_rNvcg2yDySriqStqmuZtntLsF8dKY1sQvrEW";
         ToJSON toJSON = new ToJSON();
         toJSON.setContent(message);
 
         HttpClient httpClient = HttpClients.createDefault();
-        HttpPost post = new HttpPost(URI.create(this.url));
+        HttpPost post = new HttpPost(URI.create(url));
         post.setHeader("Content-Type", "application/json");
         StringEntity stringEntity = new StringEntity(toJSON.getJSON(), "UTF-8");
         stringEntity.setContentType("application/json");
