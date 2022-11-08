@@ -10,7 +10,7 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    gradlePluginPortal()
+//    gradlePluginPortal()
 }
 
 dependencies {
@@ -28,4 +28,4 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-mainClassName = 'Main';
+mainClassName = 'Main'
