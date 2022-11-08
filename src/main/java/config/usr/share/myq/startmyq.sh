@@ -6,7 +6,7 @@ echo "processes stopped.."
 cd /usr/share/myq/
 #exec -a 'CheckHost' java -cp /usr/share/myq/ Main
 
-#exec -a 'CheckHost' /usr/share/myq/myq/bin/Myq_Garage
-exec -a 'CheckHost' /usr/share/myq/Myq_Garage
+exec -a 'CheckHost' /usr/share/myq/myq/bin/Myq_Garage
+#exec -a 'CheckHost' /usr/share/myq/Myq_Garage
 
 
