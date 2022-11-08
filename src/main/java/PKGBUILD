@@ -9,7 +9,7 @@ pkgver=1
 pkgrel=1
 pkgdesc="myq garage autoopener"
 arch=(any)
-url="https://github.com/helloimalemur/MyQ_Java"
+url="https://github.com/helloimalemur/MyQ_Garage"
 license=('GPL')
 depends=(wget git python3 python-pip jdk-openjdk)
 provides=()
@@ -44,6 +44,7 @@ package_jkoonts-myq() {
 
     #copy resulting distributions
     mv "$rootdir/../../../build/distributions/"*.tar "$pkgdir/usr/share/myq/myq.tar"
+    mv "$rootdir/../../../build/native/nativeCompile/"* "$pkgdir/usr/share/myq/"
     tar xvf "$pkgdir/usr/share/myq/myq.tar" -C "$pkgdir/usr/share/myq/"
     mv "$pkgdir/usr/share/myq/Myq"* "$pkgdir/usr/share/myq/myq/"
 
