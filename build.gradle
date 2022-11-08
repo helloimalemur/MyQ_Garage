@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id 'application'
+//    id 'org.graalvm.buildtools.native' version '0.9.17'
+
 }
 
 group 'org.example'
@@ -8,6 +10,7 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()
 }
 
 dependencies {
@@ -26,12 +29,3 @@ test {
     useJUnitPlatform()
 }
 mainClassName = 'Main';
-
-task fatJar(type: Jar) {
-    manifest {
-        attributes 'Main-Class': "${mainClassName}"
-    }
-    archiveBaseName = "${rootProject.name}"
-    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
-}
