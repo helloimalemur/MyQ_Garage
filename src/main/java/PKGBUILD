@@ -44,7 +44,7 @@ package_jkoonts-myq() {
 
     #copy resulting distributions
     mv "$rootdir/../../../build/distributions/"*.tar "$pkgdir/usr/share/myq/myq.tar"
-    mv "$rootdir/../../../build/native/nativeCompile/"* "$pkgdir/usr/share/myq/"
+#     mv "$rootdir/../../../build/native/nativeCompile/"* "$pkgdir/usr/share/myq/"
     tar xvf "$pkgdir/usr/share/myq/myq.tar" -C "$pkgdir/usr/share/myq/"
     mv "$pkgdir/usr/share/myq/Myq"* "$pkgdir/usr/share/myq/myq/"
 

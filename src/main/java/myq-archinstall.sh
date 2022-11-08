@@ -13,7 +13,7 @@ cd ~
 git clone https://github.com/helloimalemur/MyQ_Garage
 cd MyQ_Garage/
 ./gradlew build
-./gradlew nativeCompile ### added ###
+#./gradlew nativeCompile ### added ###
 cd ~/MyQ_Garage/src/main/java/
 makepkg -si --noconfirm
 sudo systemctl stop myq
