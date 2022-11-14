@@ -1,20 +1,18 @@
-import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Properties;
 
 public class Main {
     public static boolean closeondiscon;
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         //load properties file
         Properties props = new Properties();
         String fileName = "/usr/share/myq/myq.config";
         try (FileInputStream fin = new FileInputStream(fileName)) {
-        props.load(fin);
+            props.load(fin);
         } catch (FileNotFoundException fnf) {
             System.out.println("config not found" + fnf);
         } catch (IOException ioe) {
@@ -43,18 +41,21 @@ public class Main {
         //create list of Host objects
         List<Host> hosts = new ArrayList<>() {};
 
-        for (int i=0; i<participants; i++) {
-            String hostAddress = props.getProperty("app.participant"+i);
-            hosts.add(i, new Host(hostAddress, threshold, closeondiscon, timeConstraintStart, timeConstraintEnd));
-        }
-
-
-        //loop list of Host objects
-        while (true) {
+        try {
             for (int i=0; i<participants; i++) {
-                hosts.get(i).checkHostStatus();
-                Thread.sleep(1500);
+                String hostAddress = props.getProperty("app.participant"+i);
+                hosts.add(i, new Host(hostAddress, threshold, closeondiscon, timeConstraintStart, timeConstraintEnd));
             }
-        }
+        } catch (Exception e) {System.out.println(e.getMessage());}
+
+        try {
+            while (true) {
+                for (int i=0; i<participants; i++) {
+                    hosts.get(i).checkHostStatus();
+                    Thread.sleep(1500);
+                }
+            }
+        } catch (Exception e) {System.out.println(e.getMessage());}
+        //loop list of Host objects
     }
 }
