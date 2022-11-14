@@ -50,8 +50,8 @@ public class Main {
 
         try {
             while (true) {
-                for (int i=0; i<participants; i++) {
-                    hosts.get(i).checkHostStatus();
+                for (Host host : hosts) {
+                    host.checkHostStatus();
                     Thread.sleep(1500);
                 }
             }
