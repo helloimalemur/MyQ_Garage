@@ -48,7 +48,7 @@ public class Host {
                 intervalTimer.setDisConnTime(); //set disconnection time
                 System.out.println("----------------------");
                 System.out.println(this.address + " disconnected");
-                if (Main.closeondiscon) { //check 'close on disconnect' config setting
+                if (Main.close_on_disconnection) { //check 'close on disconnect' config setting
                     CloseControl.close(address);
                     intervalTimer.resetValues();
 

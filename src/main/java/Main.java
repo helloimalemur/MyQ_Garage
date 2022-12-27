@@ -6,17 +6,20 @@ import java.util.List;
 import java.util.Properties;
 
 public class Main {
-    public static boolean closeondiscon;
+    public static boolean close_on_disconnection;
     public static void main(String[] args) {
         //load properties file
         Properties props = new Properties();
         String fileName = "/usr/share/myq/myq.config";
+
         try (FileInputStream fin = new FileInputStream(fileName)) {
             props.load(fin);
         } catch (FileNotFoundException fnf) {
-            System.out.println("config not found" + fnf);
+            System.out.println("config not found");
+            System.out.println(fnf);
         } catch (IOException ioe) {
-            System.out.println("check config" + ioe);
+            System.out.println("check config");
+            System.out.println(ioe);
         }
 
         //time away before garage will open threshold setting
@@ -24,8 +27,8 @@ public class Main {
         System.out.println("Threshold: " + threshold);
 
         //close on disconnect setting
-        closeondiscon = Boolean.parseBoolean(props.getProperty("app.closeondiscon"));
-        System.out.println("Close on Disconnect: " + closeondiscon);
+        close_on_disconnection = Boolean.parseBoolean(props.getProperty("app.closeondiscon"));
+        System.out.println("Close on Disconnect: " + close_on_disconnection);
 
         //total Hosts/participants setting
         int participants = Integer.parseInt(props.getProperty("app.totalparticipants")); //in minutes
@@ -44,7 +47,7 @@ public class Main {
         try {
             for (int i=0; i<participants; i++) {
                 String hostAddress = props.getProperty("app.participant"+i);
-                hosts.add(i, new Host(hostAddress, threshold, closeondiscon, timeConstraintStart, timeConstraintEnd));
+                hosts.add(i, new Host(hostAddress, threshold, close_on_disconnection, timeConstraintStart, timeConstraintEnd));
             }
         } catch (Exception e) {System.out.println(e.getMessage());}
 
