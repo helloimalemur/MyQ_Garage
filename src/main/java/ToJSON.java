@@ -19,7 +19,6 @@ public class ToJSON {
         message.username = username;
     }
 
-
     public String getJSON() throws Exception {
         jsonstring = this.mapper.writeValueAsString(message);
         return jsonstring;
