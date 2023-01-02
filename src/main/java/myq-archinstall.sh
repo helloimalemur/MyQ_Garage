@@ -5,6 +5,8 @@ sudo systemctl stop myq
 ##if configs already exist back them up to ~/.myq
 mkdir ~/.myq
 cp /usr/share/myq/myq.* ~/.myq/
+sudo rm -rf /usr/share/myq/
+sudo mkdir /usr/share/myq/
 ##removing
 sudo pacman -R jkoonts-myq --noconfirm
 ##reinstalling
