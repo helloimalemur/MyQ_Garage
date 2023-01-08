@@ -1,10 +1,12 @@
 #!/bin/bash
 ##removes if already installed
-sudo systemctl reload-daemon
+sudo systemctl daemon-reload
 sudo systemctl stop myq
 ##if configs already exist back them up to ~/.myq
 mkdir ~/.myq
 cp /usr/share/myq/myq.* ~/.myq/
+sudo rm -rf /usr/share/myq/
+sudo mkdir /usr/share/myq/
 ##removing
 sudo pacman -R jkoonts-myq --noconfirm
 ##reinstalling
@@ -21,7 +23,6 @@ sudo systemctl stop myq
 cd ~
 sudo cp ~/.myq/* /usr/share/myq/
 sudo chmod 755 /usr/share/myq/*
-sudo systemctl reload-daemon
+sudo systemctl daemon-reload
 sudo systemctl start myq
 sudo systemctl status myq
-
