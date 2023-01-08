@@ -4,7 +4,6 @@ public class Host {
     boolean newCheck;
     boolean oldCheck;
     IntervalTimer intervalTimer;
-
     TimeConstraint timeConstraint;
 
     Host(String s, int a, boolean b, int timeConstraintStart, int timeConstraintEnd) throws Exception {
