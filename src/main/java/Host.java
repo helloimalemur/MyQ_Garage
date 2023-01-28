@@ -54,8 +54,6 @@ public class Host {
                 }
             }
             oldCheck = newCheck;
-        } else {
-            oldCheck = newCheck;
         }
     }
 }
